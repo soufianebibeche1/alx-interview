@@ -16,6 +16,7 @@ By the end of this project, you should be able to:
 
 ## Key Concepts
 
+
 ### Matrix Representation in Python
 
-A 2D matrix in Python is represented as a list of lists, where each inner list represents a row in the matrix. For example, a 3x3 matrix would be:
+2D matrix in Python is represented as a list of lists, where each inner list represents a row in the matrix. For example, a 3x3 matrix would be:
