@@ -3,14 +3,14 @@
 0-prime_game.py
 """
 
+
 def isWinner(x, nums):
-    """
-    Determines the overall winner after x rounds of the game.
+    """Determines the overall winner after x rounds of the game.
     Args:
-        x: Number of rounds
-        nums: List of n values for each round
-    Returns: 
-        Name of the player with the most wins ("Maria" or "Ben")
+        x (int): Number of rounds.
+        nums (List[int]): List of n values for each round.
+    Returns:
+        str: Name of the player with the most wins ("Maria" or "Ben").
     """
     if x < 1 or not nums:
         return None
