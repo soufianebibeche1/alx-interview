@@ -3,7 +3,6 @@
 0-prime_game.py
 """
 
-
 def isWinner(x, nums):
     """
     Determines the overall winner after x rounds of the game.
