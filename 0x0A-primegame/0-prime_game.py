@@ -4,42 +4,52 @@
 Prime game implementation
 """
 
-
-def generate_primes(n):
-    primes = [True] * (n + 1)
-    primes[0] = primes[1] = False
-    for i in range(2, int(n**0.5) + 1):
-        if primes[i]:
-            for j in range(i*i, n + 1, i):
-                primes[j] = False
-    return primes
-
-
-def can_win(nums, primes):
-    for num in nums:
-        if primes[num]:
-            new_nums = [x for x in nums if x % num != 0]
-            if not new_nums or not can_win(new_nums, primes):
-                return True
-    return False
-
-
 def isWinner(x, nums):
     """
-    Implementation of prime games to get winner
+    Determines the overall winner after x rounds of the game.
+    :param x: Number of rounds
+    :param nums: List of n values for each round
+    :return: Name of the player with the most wins ("Maria" or "Ben"), or None if tied
     """
-    max_num = max(max(nums), 1)
-    primes = generate_primes(max_num)
+    if not nums or x <= 0:
+        return None
+
+    max_n = max(nums)
+    primes = [True] * (max_n + 1)
+    primes[0] = primes[1] = False
+    for i in range(2, int(max_n**0.5) + 1):
+        if primes[i]:
+            for j in range(i * i, max_n + 1, i):
+                primes[j] = False
+
     maria_wins = 0
     ben_wins = 0
+
     for n in nums:
-        if can_win(list(range(1, n + 1)), primes):
-            maria_wins += 1
-        else:
-            ben_wins += 1
+        available = set(range(1, n + 1))
+        turn = 0
+
+        while True:
+            found_prime = False
+            for num in available:
+                if primes[num]:
+                    found_prime = True
+                    multiples = set(range(num, n + 1, num))
+                    available -= multiples
+                    break
+
+            if not found_prime:
+                if turn == 0:
+                    ben_wins += 1
+                else:
+                    maria_wins += 1
+                break
+
+            turn = 1 - turn
+
     if maria_wins > ben_wins:
         return "Maria"
-    elif maria_wins < ben_wins:
+    elif ben_wins > maria_wins:
         return "Ben"
     else:
         return None
