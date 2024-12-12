@@ -1,15 +1,17 @@
 #!/usr/bin/python3
-"0-prime_game.py"
+"""
+0-prime_game.py
+"""
 
 
 def isWinner(x, nums):
-    """Determines the winner of the prime game.
+    """
+    Determines the overall winner after x rounds of the game.
     Args:
-        x (int): The number of rounds to be played.
-        nums (List[int]): A list of integers representing the numbers
-        for each round.
-    Returns:
-        str: The name of the winner ("Ben" or "Maria").
+        x: Number of rounds
+        nums: List of n values for each round
+    Returns: 
+        Name of the player with the most wins ("Maria" or "Ben")
     """
     if x < 1 or not nums:
         return None
